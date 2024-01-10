@@ -1,0 +1,40 @@
+.wrapper {
+    height: 10vh;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(121, 9, 98, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__card {
+        width: 80%;
+        color: white;
+
+        &__currency {
+            overflow: hidden;
+            height: 20px;
+
+            &__scroll-text {
+                overflow: hidden;
+                white-space: nowrap;
+                animation: scrollText 300s infinite linear;
+                font-weight: bold;
+                display: inline-block;
+
+                span {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+
+@keyframes scrollText {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
