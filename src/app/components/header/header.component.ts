@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { ForexService } from '../../services/forex.service';
-import { Subject, filter, map, takeUntil } from 'rxjs';
+import { Subject, map, takeUntil } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 interface ForexMap {
@@ -24,6 +24,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    this.getAllCurrency();
+  }
+
+  ngOnDestroy(): void {
+    this.$destroy.next(true);
+    this.$destroy.complete()
+  }
+
+  private getAllCurrency(): void {
     this.forexService.getAll()
       .pipe(
         map((res) => {
@@ -44,10 +53,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.forex = data;
         }
       })
-  }
-
-  ngOnDestroy(): void {
-    this.$destroy.next(true);
-    this.$destroy.complete()
   }
 }

@@ -1,0 +1,46 @@
+.wrapper {
+    height: 50vh;
+
+    &__first {
+        display: flex;
+        flex-direction: column
+    }
+
+    ;
+
+    &__second {
+        display: flex;
+        flex-direction: column
+    }
+
+    ;
+
+
+    .converter {
+        display: flex;
+        justify-content: space-evenly;
+
+        @media screen and (max-width: 590px) {
+            flex-direction: column;
+        }
+    }
+
+    .icon-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .icon {
+            transform: scale(2);
+
+            @media screen and (max-width: 590px) {
+                transform: rotate(90deg) scale(2);
+            }
+        }
+    }
+
+    .right {
+        transform: rotate(180deg);
+    }
+}

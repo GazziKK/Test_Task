@@ -1,0 +1,60 @@
+<div class="wrapper">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="form" class="converter">
+                <div class="wrapper__first">
+                    <mat-form-field color="accent">
+                        <mat-label>Select a currency</mat-label>
+                        <input formControlName="first" type="text" matInput [matAutocomplete]="first">
+                        <mat-autocomplete #first="matAutocomplete">
+                            @for (option of filteredOptions?.first; track option) {
+                            <mat-option [value]="option">{{option}}</mat-option>
+                            }
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <mat-form-field color="accent">
+                        <mat-label>Amount</mat-label>
+                        <input type="text" formControlName="amountFirst" matInput #postalCode>
+                        @if (form.get('amountFirst').errors ) {
+                        <mat-error>Only Number</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div class="icon-box">
+                    <button mat-fab color="primary" (click)="changeMainCurrency()" [class.right]="mainCurrency">
+                        <mat-icon class="icon">arrow_right_alt</mat-icon>
+                    </button>
+                </div>
+
+                <div class="wrapper__second">
+                    <mat-form-field color="accent">
+                        <mat-label>Select a currency</mat-label>
+                        <input formControlName="second" type="text" matInput [matAutocomplete]="second">
+                        <mat-autocomplete #second="matAutocomplete">
+                            @for (option of filteredOptions?.second; track option) {
+                            <mat-option [value]="option">{{option}}</mat-option>
+                            }
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <mat-form-field color="accent">
+                        <mat-label>Amount</mat-label>
+                        <input formControlName="amountSecond" matInput>
+                        @if (form.get('amountSecond').errors) {
+                        <mat-error>Only Number</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+    @if (converted) {
+    <div>
+        <h1>{{converted.base}}/{{converted.result.secondCurrency}} = {{converted.result.rate}}</h1>
+        <h2>Amount: {{converted.amount}} * {{converted.result.rate}} = <i>{{converted.result.result}}</i></h2>
+    </div>
+    }
+</div>

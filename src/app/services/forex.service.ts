@@ -13,6 +13,16 @@ interface ForexData {
   [key: string]: string;
 }
 
+interface ConvertRes {
+  base: string;
+  amount: number;
+  result: {
+    [key: string]: number;
+    rate: number;
+  },
+  ms: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,5 +34,9 @@ export class ForexService {
 
   public getAll(): Observable<ForexRes> {
     return this.http.get<ForexRes>(`${this.url}fetch-all?from=USD&api_key=${this.token}`)
+  }
+
+  public convert(from: string, to: string, amount: number): Observable<ConvertRes> {
+    return this.http.get<ConvertRes>(`${this.url}convert?from=${from}&to=${to}&amount=${amount}&api_key=${this.token}`)
   }
 }

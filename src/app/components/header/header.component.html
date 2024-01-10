@@ -3,9 +3,11 @@
         <mat-card-content>
             <div class="wrapper__card__currency">
                 <div class="wrapper__card__currency__scroll-text">
-                    <span *ngFor="let currency of forex">
+                    @for (currency of forex; track currency) {
+                    <span>
                         {{currency.key}}: {{currency.value}}
                     </span>
+                    }
                 </div>
             </div>
         </mat-card-content>
